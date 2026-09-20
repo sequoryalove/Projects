@@ -1,30 +1,31 @@
 import java.util.Scanner;
 
 public class Runner {
+
     public static void main(String[] args) {
 
         Scanner input = new Scanner(System.in);
 
-        Pet p1 = new Pet();
-        System.out.println(p1.toString());
+        double sum = 0;
+        int count = 0;
+
+        System.out.print("Enter a test score (or -1 to quit): ");
+
+        double score = input.nextDouble();
+
+        while (score != -1) {
+            sum += score;
+            count++;
+
+            System.out.print("Enter another test score (or -1 to quit): ");
+            score = input.nextDouble();
+        }
+
+        Tests tests = new Tests(sum, count);
+
         System.out.println();
-
-        Pet p2 = new Pet("Buster", "Dog", 11);
-        System.out.println(p2.toString());
-        System.out.println();
-
-        System.out.println("Enter animal type: ");
-        String type = input.nextLine();
-
-        System.out.println("Enter animal name: ");
-        String name = input.nextLine();
-
-        System.out.println("Enter animal age: ");
-        int age = input.nextInt();
-
-        Pet p3 = new Pet(name, type, age);
-        System.out.println();
-        System.out.println(p3.toString());
+        System.out.println("Number of test scores entered: " + count);
+        System.out.printf("Average test score: %.2f%n", tests.getAverage());
 
         input.close();
     }
